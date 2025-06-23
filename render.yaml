@@ -1,6 +1,6 @@
 services:
   - type: worker
-    name: velokrajbot
+    name: movnyivartovyi
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python velokrajbot.py"
+    startCommand: "python bot.py"

@@ -3,9 +3,9 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.types import ChatPermissions
 from aiogram.utils import executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 
 # Токен бота
 API_TOKEN = os.getenv("BOT_TOKEN")
@@ -20,6 +20,11 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 # Обробка приєднання нового учасника
 @dp.message_handler(content_types=types.ContentType.NEW_CHAT_MEMBERS)
 async def new_member(message: types.Message):
+    chat = await bot.get_chat(message.chat.id)
+
+    group_name = chat.title or "ця група"
+    group_description = chat.description or ""
+
     for member in message.new_chat_members:
         # Спочатку блокуємо нового користувача
         await bot.restrict_chat_member(
@@ -35,16 +40,19 @@ async def new_member(message: types.Message):
             types.InlineKeyboardButton("Нєт", callback_data=f"rule_{member.id}_no")
         )
 
-        # Повідомлення з правилами
+        # Динамічне повідомлення
+        message_text = f"""👋 Привіт, {member.full_name}!
+
+Це група {group_name}{f". {group_description}" if group_description else ""}
+
+📌 Спілкування у цій групі відбувається виключно Українською мовою.
+
+Чи погоджуєшся ти із цим правилом і хочеш доєднатись?
+"""
+
         await message.reply(
-            f"""👋 Привіт, {member.full_name}!
-
-        Це група 🇺🇦 Українців в Австрії, яких повʼязує інтерес до 🚴‍ велосипедів.
-
-        📌 Спілкування у цій групі відбувається виключно українською мовою.
-
-        Чи погоджуєшся ти із цим правилом і хочеш доєднатись?""",
-            reply_markup=keyboard
+            message_text,
+            reply_markup=keyboard,
         )
 
 # Обробка відповіді на правила

@@ -16,4 +16,4 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 # Запускаємо бота
-CMD ["python", "VeloKrajBot.py"]
+CMD ["python", "bot.py"]
