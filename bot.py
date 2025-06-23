@@ -7,9 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Токен бота
 API_TOKEN = os.getenv("BOT_TOKEN")
-print("BOT_TOKEN from env:", API_TOKEN)  # додай це для дебагу
 
 if not API_TOKEN:
     raise ValueError("BOT_TOKEN не задано! Перевір .env файл або змінні середовища.")
