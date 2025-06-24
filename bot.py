@@ -94,7 +94,7 @@ async def process_rule_answer(call: types.CallbackQuery):
         await call.message.edit_text("Нажаль користувач не погодився із правилами. Доступ до групи заборонено.")
         await bot.kick_chat_member(chat_id=call.message.chat.id, user_id=user_id)
 
-# === Запуск бота + вебсервер одночасно ===
+# === Запуск бота і вебсервера одночасно ===
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.create_task(run_webserver())             # 🧠 HTTP keepalive
