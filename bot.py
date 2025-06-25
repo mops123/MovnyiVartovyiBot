@@ -2,6 +2,10 @@ import os
 import asyncio
 from aiohttp import web
 from dotenv import load_dotenv
+from handlers import commands
+
+commands.register(dp)
+
 
 # === Базовий HTTP сервер для Render ===
 async def handle(request):
