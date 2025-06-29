@@ -11,7 +11,7 @@ async def main():
     # Запускаємо webserver і polling паралельно
     await asyncio.gather(
         run_webserver(),
-        dp.start_polling()
+        dp.start_polling(skip_updates=True)
     )
 
 if __name__ == "__main__":
