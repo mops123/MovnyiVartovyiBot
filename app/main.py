@@ -9,9 +9,10 @@ commands.register(dp)
 
 async def main():
     # Запускаємо webserver і polling паралельно
+    await dp.bot.delete_webhook(drop_pending_updates=True)
     await asyncio.gather(
         run_webserver(),
-        dp.start_polling(skip_updates=True)
+        dp.start_polling()
     )
 
 if __name__ == "__main__":
