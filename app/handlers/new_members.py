@@ -18,8 +18,8 @@ def register_handlers(dp: Dispatcher):
 
             keyboard = InlineKeyboardMarkup(row_width=2)
             keyboard.add(
-                InlineKeyboardButton("Так, додайте мене хутчіш!", callback_data=f"rule_{member.id}_yes"),
-                InlineKeyboardButton("Нєт", callback_data=f"rule_{member.id}_no")
+                InlineKeyboardButton("Нєт", callback_data=f"rule_{member.id}_no"),
+                InlineKeyboardButton("Так, додайте мене хутчіш!", callback_data=f"rule_{member.id}_yes")
             )
 
             message_text = f"""👋 Привіт, {member.full_name}!
@@ -56,7 +56,7 @@ def register_handlers(dp: Dispatcher):
                     can_add_web_page_previews=True
                 )
             )
-            await call.message.edit_text("✅ Вітаю! Тепер ти можеш писати у групі. Ласкаво просимо!")
+            await call.message.edit_text("✅ Вітаю! Тепер ти можеш писати у групі.\nНапиши кілька слів про себе! :)")
         else:
             await call.message.edit_text("Нажаль користувач не погодився із правилами. Доступ до групи заборонено.")
             await bot.kick_chat_member(chat_id=call.message.chat.id, user_id=user_id)
