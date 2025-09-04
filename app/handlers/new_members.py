@@ -56,7 +56,7 @@ def register_handlers(dp: Dispatcher):
                     can_add_web_page_previews=True
                 )
             )
-            await call.message.edit_text("✅ Вітаю! Тепер ти можеш писати у групі.\nНапиши кілька слів про себе! :)")
+            await call.message.edit_text("Ласкаво просимо! Тепер ти можеш писати у групі.\n\nНапиши кілька слів про себе! 🙂")
         else:
             await call.message.edit_text("Нажаль користувач не погодився із правилами. Доступ до групи заборонено.")
             await bot.kick_chat_member(chat_id=call.message.chat.id, user_id=user_id)
